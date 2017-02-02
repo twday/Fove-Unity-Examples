@@ -27,6 +27,9 @@ public class DetectBlink : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        /*
+         * If eyes have been closed, start the timer
+         */
         if (FoveInterface.CheckEyesClosed() == Fove.EFVR_Eye.Both)
             t.started = true;
 
@@ -34,7 +37,10 @@ public class DetectBlink : MonoBehaviour {
 
         if (FoveInterface.CheckEyesClosed() == Fove.EFVR_Eye.Neither && t.started)
         {
-
+            /* 
+             * If time between closing and opening eyes is less than the threshold
+             * A blink has been detected
+             */
             if (t.value < blinkThreshold)
             {
                 if (debug) Debug.Log("Blink Detected");
