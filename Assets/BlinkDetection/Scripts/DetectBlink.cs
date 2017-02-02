@@ -10,15 +10,12 @@ public class DetectBlink : MonoBehaviour {
     [Tooltip("Check if you want output to debug objects")]
     public bool debug = false;
 
-    [HideInInspector]
-    public GameObject debugText;
-
+    /* Timer Struct */
     struct Timer
     {
         public float value { get; set; }
         public bool started { get; set; }
     }
-
 
     Timer t;
 
@@ -31,39 +28,20 @@ public class DetectBlink : MonoBehaviour {
 	void Update () {
 
         if (FoveInterface.CheckEyesClosed() == Fove.EFVR_Eye.Both)
-        {
             t.started = true;
-        }
 
-        if (t.started)
-        {
-            t.value += Time.deltaTime;
-        }
+        if (t.started) t.value += Time.deltaTime;
 
         if (FoveInterface.CheckEyesClosed() == Fove.EFVR_Eye.Neither && t.started)
         {
+
             if (t.value < blinkThreshold)
             {
-                t.started = false;
-                t.value = 0;
+                if (debug) Debug.Log("Blink Detected");
             }
+
+            t.started = false;
+            t.value = 0;
         }
 	}
-}
-
-[CustomEditor(typeof(DetectBlink))]
-public class DetectBlinkEditor : Editor
-{
-    void onInspectorGUI()
-    {
-        var detectBlink = target as DetectBlink;
-
-        detectBlink.debug = GUILayout.Toggle(detectBlink.debug, "Debug");
-
-        if (detectBlink.debug)
-        {
-            bool allowSceneObjects = !EditorUtility.IsPersistent(target);
-            detectBlink.debugText = (GameObject)EditorGUILayout.ObjectField("Debug Text", detectBlink.debugText, typeof(GameObject), allowSceneObjects);
-        }
-    }
 }
