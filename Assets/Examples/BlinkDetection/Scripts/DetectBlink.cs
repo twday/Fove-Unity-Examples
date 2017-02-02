@@ -7,10 +7,16 @@ public class DetectBlink : MonoBehaviour {
 
     [Tooltip("Threshold for blink in seconds \n(Average is between 0.3 and 0.4 seconds)")]
     public float blinkThreshold = 0.5f;
+    [Tooltip("Light controlled by blinking")]
+    public Light light;
     [Tooltip("Check if you want output to debug objects")]
     public bool debug = false;
 
-    /* Timer Struct */
+    /// <summary>
+    ///     Timer Construct
+    ///     <param name="value">Holds the value of the timer</param>
+    ///     <param name="started">Is the timer started?</param>
+    /// </summary>
     struct Timer
     {
         public float value { get; set; }
@@ -44,6 +50,7 @@ public class DetectBlink : MonoBehaviour {
             if (t.value < blinkThreshold)
             {
                 if (debug) Debug.Log("Blink Detected");
+                light.enabled = !light.enabled;
             }
 
             t.started = false;
