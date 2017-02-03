@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class DetectBlink : MonoBehaviour {
 
     [Tooltip("Threshold for blink in seconds \n(Average is between 0.3 and 0.4 seconds)")]
     public float blinkThreshold = 0.5f;
     [Tooltip("Light controlled by blinking")]
-    public Light light;
+    public Light blinkLight;
     [Tooltip("Check if you want output to debug objects")]
     public bool debug = false;
 
@@ -50,7 +49,7 @@ public class DetectBlink : MonoBehaviour {
             if (t.value < blinkThreshold)
             {
                 if (debug) Debug.Log("Blink Detected");
-                light.enabled = !light.enabled;
+                blinkLight.enabled = !blinkLight.enabled;
             }
 
             t.started = false;
