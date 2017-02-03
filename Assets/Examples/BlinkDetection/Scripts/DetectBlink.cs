@@ -8,8 +8,6 @@ public class DetectBlink : MonoBehaviour {
     public float blinkThreshold = 0.5f;
     [Tooltip("Light controlled by blinking")]
     public Light blinkLight;
-    [Tooltip("Check if you want output to debug objects")]
-    public bool debug = false;
 
     /// <summary>
     ///     Timer Construct
@@ -28,7 +26,7 @@ public class DetectBlink : MonoBehaviour {
 	void Start () {
         t = new Timer();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -42,13 +40,12 @@ public class DetectBlink : MonoBehaviour {
 
         if (FoveInterface.CheckEyesClosed() == Fove.EFVR_Eye.Neither && t.started)
         {
-            /* 
+            /*
              * If time between closing and opening eyes is less than the threshold
              * A blink has been detected
              */
             if (t.value < blinkThreshold)
             {
-                if (debug) Debug.Log("Blink Detected");
                 blinkLight.enabled = !blinkLight.enabled;
             }
 

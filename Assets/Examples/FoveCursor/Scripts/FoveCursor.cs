@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class FoveCursor : MonoBehaviour {
 
-    [Tooltip("Turn on debugging")]
-    public bool debug;
-
 	// Use this for initialization
 	void Start () {
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -20,7 +17,6 @@ public class FoveCursor : MonoBehaviour {
         switch (FoveInterface.CheckEyesClosed())
         {
             case Fove.EFVR_Eye.Neither:
-                Debug.Log("Both Eyes Open");
 
                 Physics.Raycast(eyes.left, out hitLeft, Mathf.Infinity);
                 Physics.Raycast(eyes.right, out hitRight, Mathf.Infinity);
@@ -31,10 +27,9 @@ public class FoveCursor : MonoBehaviour {
                 {
                     transform.position = eyes.left.GetPoint(3.0f) + ((eyes.right.GetPoint(3.0f) - eyes.left.GetPoint(3.0f)) / 2);
                 }
-                
+
                 break;
             case Fove.EFVR_Eye.Left:
-                Debug.Log("Left Eye Closed");
 
                 Physics.Raycast(eyes.right, out hitRight, Mathf.Infinity);
                 if (hitRight.point != Vector3.zero) // Vector3 is non-nullable; comparing to null is always false
@@ -46,8 +41,7 @@ public class FoveCursor : MonoBehaviour {
                     transform.position = eyes.right.GetPoint(3.0f);
                 }
                 break;
-            case Fove.EFVR_Eye.Right:
-                Debug.Log("Right Eye Closed");   
+            case Fove.EFVR_Eye.Right:  
 
                 Physics.Raycast(eyes.left, out hitLeft, Mathf.Infinity);
                 if (hitLeft.point != Vector3.zero) // Vector3 is non-nullable; comparing to null is always false
