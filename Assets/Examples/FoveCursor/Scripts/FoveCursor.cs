@@ -20,14 +20,7 @@ public class FoveCursor : MonoBehaviour {
         switch (FoveInterface.CheckEyesClosed())
         {
             case Fove.EFVR_Eye.Neither:
-                if (debug)
-                {
-                    Debug.Log("Left Eye: " + eyes.left.ToString());
-                    Debug.DrawRay(eyes.left.origin, eyes.left.direction, Color.green);
-
-                    Debug.Log("Right Eye: " + eyes.right.ToString());
-                    Debug.DrawRay(eyes.right.origin, eyes.right.direction, Color.red);
-                }
+                Debug.Log("Both Eyes Open");
 
                 Physics.Raycast(eyes.left, out hitLeft, Mathf.Infinity);
                 Physics.Raycast(eyes.right, out hitRight, Mathf.Infinity);
@@ -41,7 +34,7 @@ public class FoveCursor : MonoBehaviour {
                 
                 break;
             case Fove.EFVR_Eye.Left:
-                if (debug) Debug.Log("Right Eye: " + eyes.right.ToString());
+                Debug.Log("Left Eye Closed");
 
                 Physics.Raycast(eyes.right, out hitRight, Mathf.Infinity);
                 if (hitRight.point != Vector3.zero) // Vector3 is non-nullable; comparing to null is always false
@@ -54,7 +47,8 @@ public class FoveCursor : MonoBehaviour {
                 }
                 break;
             case Fove.EFVR_Eye.Right:
-                if (debug) Debug.Log("Left Eye: " + eyes.left.ToString());
+                Debug.Log("Right Eye Closed");   
+
                 Physics.Raycast(eyes.left, out hitLeft, Mathf.Infinity);
                 if (hitLeft.point != Vector3.zero) // Vector3 is non-nullable; comparing to null is always false
                 {
