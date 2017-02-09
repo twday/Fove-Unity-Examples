@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FoveCursor : MonoBehaviour {
 
+    public float cursorDistance = 3.0f;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -25,7 +27,7 @@ public class FoveCursor : MonoBehaviour {
                     transform.position = hitLeft.point + ((hitRight.point - hitLeft.point) / 2);
                 } else
                 {
-                    transform.position = eyes.left.GetPoint(3.0f) + ((eyes.right.GetPoint(3.0f) - eyes.left.GetPoint(3.0f)) / 2);
+                    transform.position = eyes.left.GetPoint(cursorDistance) + ((eyes.right.GetPoint(cursorDistance) - eyes.left.GetPoint(cursorDistance)) / 2);
                 }
 
                 break;
@@ -38,7 +40,7 @@ public class FoveCursor : MonoBehaviour {
                 }
                 else
                 {
-                    transform.position = eyes.right.GetPoint(3.0f);
+                    transform.position = eyes.right.GetPoint(cursorDistance);
                 }
                 break;
             case Fove.EFVR_Eye.Right:  
@@ -50,7 +52,7 @@ public class FoveCursor : MonoBehaviour {
                 }
                 else
                 {
-                    transform.position = eyes.left.GetPoint(3.0f);
+                    transform.position = eyes.left.GetPoint(cursorDistance);
                 }
                 break;
         }
