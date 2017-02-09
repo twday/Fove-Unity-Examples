@@ -25,32 +25,39 @@ public class LineTracer : MonoBehaviour {
         if (lineRenderer == null)
             lineRenderer = gameObject.AddComponent<LineRenderer>();
 
+        lineRenderer.material = new Material(Shader.Find("Standard"));
+        lineRenderer.material.color = lineColor;
         lineRenderer.startColor = lineColor;
         lineRenderer.startWidth = lineWidth;
+
+        points = new List<Vector3>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         currPos = Vector3.zero;
 
-        switch (FoveInterface.CheckEyesClosed())
+        if (FoveInterface.CheckEyesClosed() != eye)
         {
-            case Fove.EFVR_Eye.Both:
-                break;
-            case Fove.EFVR_Eye.Left:
-                currPos = FoveInterface.GetEyeRays().left.GetPoint(drawDistance);
-                break;
-            case Fove.EFVR_Eye.Right:
-                currPos = FoveInterface.GetEyeRays().right.GetPoint(drawDistance);
-                break;
-            case Fove.EFVR_Eye.Neither:
-                break;
+            switch (eye)
+            {
+                case Fove.EFVR_Eye.Both:
+                    break;
+                case Fove.EFVR_Eye.Right:
+                    currPos = FoveInterface.GetEyeRays().left.GetPoint(drawDistance);
+                    break;
+                case Fove.EFVR_Eye.Left:
+                    currPos = FoveInterface.GetEyeRays().right.GetPoint(drawDistance);
+                    break;
+                case Fove.EFVR_Eye.Neither:
+                    break;
+            }
         }
 
         if (currPos != Vector3.zero)
         {
             float dist = Vector3.Distance(prevPos, currPos);
-
+            Debug.Log(dist);
 
             if (dist > movementThreshold)
             {
@@ -62,6 +69,8 @@ public class LineTracer : MonoBehaviour {
                     lineRenderer.SetPosition(i, points[i]);
                 }
             }
+
+            prevPos = currPos;
         }
 	}
 }

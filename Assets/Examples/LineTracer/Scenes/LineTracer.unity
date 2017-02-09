@@ -173,9 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eye: 2
-  drawDistance: 3
+  drawDistance: 10
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  lineWidth: 1
+  lineWidth: 0.02
+  movementThreshold: 2
 --- !u!4 &472006336
 Transform:
   m_ObjectHideFlags: 0
@@ -217,9 +218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eye: 1
-  drawDistance: 3
+  drawDistance: 10
   lineColor: {r: 0, g: 1, b: 0, a: 1}
-  lineWidth: 1
+  lineWidth: 0.02
+  movementThreshold: 2
 --- !u!4 &662408182
 Transform:
   m_ObjectHideFlags: 0
@@ -296,3 +298,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 26.586, y: 318.593, z: -2.726}
+--- !u!1001 &1665845344
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492041187444024, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721578352204600, guid: ff594e86923df694bbe83c1f0385c4c9,
+        type: 2}
+      propertyPath: cursorDistance
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ff594e86923df694bbe83c1f0385c4c9, type: 2}
+  m_IsPrefabParent: 0
